@@ -1,0 +1,48 @@
+LINUX BUILD INSTRUCTIONS
+
+First build and install the following packages:
+
+- openssl: https://www.openssl.org
+- cryptopp: https://www.cryptopp.com/downloads.html
+- pcsc-lite: https://pcsclite.apdu.fr/files
+- CCID driver https://ccid.apdu.fr (if driver not provided with the reader)
+
+----------------------------------------------------------------------------------------------------------------------------
+
+CIE PKCS11 Shared Library build instructions (libcie-pkcs11.so):
+
+  cd cie-pkcs11
+  make -j4
+  sudo make install
+
+To install in a directory different from /usr/lib64, edit the Makefile first
+
+----------------------------------------------------------------------------------------------------------------------------
+
+CIEID Java application build instructions (cieid.jar) - tested with OpenJDK8:
+
+  cd CIEID
+  make 
+  make install
+
+To install in a directory different from /usr/share/CIEID, edit the Makefile and the cieid.desktop file first
+
+----------------------------------------------------------------------------------------------------------------------------
+
+TO RUN THE APPLICATION (AFTER BUILD AND INSTALL):
+
+  java -Xms1G -Xmx1G -Djna.library.path=".:/usr/lib64" -classpath "/usr/share/CIEID/cieid.jar" it.ipzs.cieid.MainApplication
+
+----------------------------------------------------------------------------------------------------------------------------
+
+DOCUMENTATION
+
+The manual is available in the "DOC" subdirectory
+
+----------------------------------------------------------------------------------------------------------------------------
+
+NOTE: Bit4Id smart card readers
+
+With some Bit4Id smart card readers (e.g. miniLector CIE or miniLector AIR NFC v3) the card should be placed
+on the reader crosswise rather than longitudinally.
+

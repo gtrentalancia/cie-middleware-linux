@@ -1,0 +1,48 @@
+INSTALLAZIONE PER LINUX
+
+Come prima cosa, compilare e/o installare i seguenti pacchetti:
+
+- openssl: https://www.openssl.org
+- cryptopp: https://www.cryptopp.com/downloads.html
+- pcsc-lite: https://pcsclite.apdu.fr/files
+- driver CCID https://ccid.apdu.fr (se non fornito con il lettore)
+
+----------------------------------------------------------------------------------------------------------------------------
+
+Compilazione ed installazione della libreria dinamica CIE PKCS11 (libcie-pkcs11.so):
+
+  cd cie-pkcs11
+  make -j4
+  sudo make install
+
+Se si intende installare in una cartella diversa da /usr/lib64, cambiare il Makefile
+
+----------------------------------------------------------------------------------------------------------------------------
+
+Compilazione ed installazione della applicazione Java CIEID (cieid.jar) - testato con OpenJDK8:
+
+  cd CIEID
+  make
+  sudo make install
+
+Se si intende installare in una cartella diversa da /usr/share/CIEID, cambiare il Makefile ed il file cieid.desktop
+
+----------------------------------------------------------------------------------------------------------------------------
+
+Infine per eseguire l'applicazione CIEID (dopo aver installato quanto sopra):
+
+  java -Xms1G -Xmx1G -Djna.library.path=".:/usr/lib64" -classpath "/usr/share/CIEID/cieid.jar" it.ipzs.cieid.MainApplication
+
+----------------------------------------------------------------------------------------------------------------------------
+
+DOCUMENTAZIONE
+
+Il manuale è disponibile nella cartella "DOC"
+
+----------------------------------------------------------------------------------------------------------------------------
+
+NOTA: Lettori di smart card Bit4Id
+
+Con alcuni lettori di smart card Bit4Id (es. miniLector CIE o miniLector AIR NFC v3) è necessario appoggiare la
+carta sul lettore di traverso invece che longitudalmente.
+
