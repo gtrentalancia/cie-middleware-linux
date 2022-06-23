@@ -18,12 +18,14 @@ RM := rm -rf
 -include PCSC/subdir.mk
 -include Crypto/subdir.mk
 -include CSP/subdir.mk
+-include Sign/subdir.mk
 
 SRCS := $(UTIL_CPP_SRCS) \
 	$(PKCS11_CPP_SRCS) \
 	$(PCSC_CPP_SRCS) \
 	$(CRYPTO_CPP_SRCS) \
-	$(CSP_CPP_SRCS)
+	$(CSP_CPP_SRCS) \
+	$(SIGN_CPP_SRCS)
 
 OBJS := $(SRCS:.cpp=.o)
 
